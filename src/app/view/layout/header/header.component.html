@@ -1,0 +1,7 @@
+<header class="layout-page-header">
+  <nz-breadcrumb [nzSeparator]="'>'">
+    <nz-breadcrumb-item *ngFor="let router of routers;">
+      <a (click)="go(router.path)">{{router.title}}</a>
+    </nz-breadcrumb-item>
+  </nz-breadcrumb>
+</header>

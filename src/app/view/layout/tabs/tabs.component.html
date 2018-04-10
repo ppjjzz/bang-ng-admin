@@ -1,0 +1,17 @@
+<div class="tabs-header">
+  <ul>
+    <li *ngFor="let tab of tabs; let activeIndex = index;" class="tab-title" [title]="tab.label" [class.is-active]="activeTabIndex === activeIndex" (click)="changeTab(activeIndex)">
+      <p class="text-ellipsis">{{tab.label}}</p>
+    </li>
+  </ul>
+</div>
+<div class="tabs-body">
+  <div *ngFor="let tab of tabs; let i = index" 
+  [class.tabs-tabpane-active]="(activeTabIndex == i)"
+  [class.tabs-tabpane-inactive]="(activeTabIndex != i)">
+    <ng-template [ngTemplateOutlet]="tab.content">
+
+    </ng-template>
+  </div>
+  <!-- <ng-content></ng-content> -->
+</div>

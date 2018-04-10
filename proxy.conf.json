@@ -1,0 +1,13 @@
+{
+    "/api": {
+      "target": "https://www.easy-mock.com/mock/5a9625ab13b9783e11839fd2",
+      "secure": false,
+      "header": {
+          "cookie": ""
+      },
+      "pathRewrite": {
+        "^/api": ""
+      },
+      "changeOrigin": true
+    }
+  }

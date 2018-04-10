@@ -1,0 +1,78 @@
+<layout-header [routers]="routersList"></layout-header>
+<layout-page-main>
+  <layout-search-bar>
+    <div nz-row [nzGutter]="8" [nzType]="'flex'" [nzJustify]="'start'">
+      <div nz-col class="col-margin-bottom">
+        <input nz-input placeholder="用户名" [(ngModel)]="username">
+      </div>
+      <div nz-col class="col-margin-bottom">
+        <nz-select style="min-width: 160px;" nzPlaceHolder="性别" [(ngModel)]="gender" [nzMode]="'multiple'">
+          <nz-option *ngFor="let option of genderList" [nzLabel]="option.label" [nzValue]="option.id">
+          </nz-option>
+        </nz-select>
+      </div>
+      <div nz-col class="col-margin-bottom">
+        <nz-select style="min-width: 160px;" nzPlaceHolder="是否删除" [(ngModel)]="is_delete">
+          <nz-option [nzLabel]="'是'" [nzValue]="1">
+          </nz-option>
+          <nz-option [nzLabel]="'否'" [nzValue]="0">
+          </nz-option>
+        </nz-select>
+      </div>
+      <div nz-col class="col-margin-bottom">
+        <button nz-button [nzType]="'primary'" (click)="refreshData()">
+          搜索
+        </button>
+      </div>
+      <div nz-col class="col-margin-bottom">
+        <button nz-button [nzType]="'default'" (click)="reset()">
+          重置
+        </button>
+      </div>
+    </div>
+  </layout-search-bar>
+  <nz-table #nzTable [nzFrontPagination]="false" [nzData]="_tableData" nzShowSizeChanger [nzPageSizeOptions]="[20,50,100]"
+    [nzLoading]="_loading" [nzTotal]="_total" [(nzPageIndex)]="_current" (nzPageIndexChange)="refreshData()" [(nzPageSize)]="_pageSize"
+    (nzPageSizeChange)="refreshData(true)" [nzShowTotal]="totalTemplate" nzBordered [nzSize]="'middle'">
+    <thead>
+      <tr>
+        <th nzWidth="150px" *ngFor="let item of _tableConfig">
+          {{item.title}}
+        </th>
+      </tr>
+    </thead>
+    <tbody nz-tbody>
+      <tr *ngFor="let data of nzTable.data; let odd = odd" [class.ng-table-odd]="odd">
+        <td *ngFor="let item of _tableConfig">
+          <ng-container [ngSwitch]="item.fieldName">
+            <div *ngSwitchCase="'operate'" class="operate-area">
+              <label (click)="openEdit(data)">
+                <a>编辑</a>
+              </label>
+            </div>
+            <ng-container *ngSwitchCase="'is_delete'">
+              <nz-switch [(ngModel)]="data['is_delete']"></nz-switch>
+            </ng-container>
+            <ng-container *ngSwitchCase="'interest'">
+              {{data['interest'].join(',')}}
+            </ng-container>
+            <ng-container *ngSwitchCase="'gender'">
+              {{data['gender'] === 1 ? '男' : '女'}}
+            </ng-container>
+            <ng-container *ngSwitchCase="'create_datetime'">
+              {{data['create_datetime'] | date}}
+            </ng-container>
+            <ng-container *ngSwitchCase="'create_datetime'">
+              {{data['user_role'] | role}}
+            </ng-container>
+            <ng-container *ngSwitchCase="'home'">
+              {{data['home']['home_province']}}/{{data['home']['home_province']}}/{{data['home']['home_province']}}
+            </ng-container>
+            <div *ngSwitchDefault>{{data[item.fieldName]}}</div>
+          </ng-container>
+        </td>
+      </tr>
+    </tbody>
+    <ng-template #totalTemplate let-total>共 {{total}} 条</ng-template>
+  </nz-table>
+</layout-page-main>

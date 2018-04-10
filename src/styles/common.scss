@@ -1,0 +1,45 @@
+// 声明全局公共样式
+@import 'nprogress/nprogress.css';
+.ant-table {
+    font-size: 12px;
+}
+.ng-table-odd {
+    background-color: #fbfbfb;
+}
+.flex-align-center {
+    display: flex;
+    align-items: center;
+}
+.col-margin-bottom {
+    margin-bottom: $margin;
+}
+// 旋转180°
+.rotate-180 {
+    transform: rotate(180deg);
+}
+// 过渡0.5s
+.transition-default {
+    transition: all 0.5s;
+}
+// 树形多选下拉框样式
+tree-node-checkbox {
+    order: 1;
+    padding-top: 4px;
+    padding-left: 4px;
+}
+tree-node-expander {
+    order: 0;
+}
+.node-content-wrapper {
+    order: 2;
+    width: 100%;
+}
+.lable-title {
+    color: #999;
+}
+.text-right {
+    text-align: right;
+}
+.text-center {
+    text-align: center;
+}

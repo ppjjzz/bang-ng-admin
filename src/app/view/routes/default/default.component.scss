@@ -1,0 +1,102 @@
+:host ::ng-deep .trigger {
+    font-size: 18px;
+    line-height: 50px;
+    padding: 0 24px;
+    cursor: pointer;
+    transition: color .3s;
+}
+
+:host ::ng-deep .trigger:hover {
+    color: #1890ff;
+}   
+
+:host ::ng-deep .logo {
+    height: 32px;
+    background: rgba(255, 255, 255, .2);
+    margin: 16px;
+}
+.nav-header {
+    position: relative;
+    height: 40px;
+    line-height: initial;
+    padding: 0;
+    box-shadow: 0 1px 10px rgba(0,0,0,.2);
+    display: flex;
+    .label-nav-bar {
+        overflow: hidden;
+        width: 800px;
+        height: 40px;
+        flex-grow: 1;
+        display: flex;
+        .label-nav {
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            padding: 0px 13px;
+            color: #333;
+            &:hover {
+                background-color: rgba(40, 138, 221, 0.15);
+                color: #288add;
+                .label-nav-text {
+                    color: #288add;
+                }
+                .label-close {
+                    display: block;
+                    &:hover {
+                        background-color: rgba(40, 138, 221, 0.2);
+                    }
+                }
+            }
+            &.label-nav-active {
+                background-color: #288add;
+                color: #fff;
+                &:hover {
+                    .label-nav-text {
+                        color: #fff;
+                    }
+                    .label-close {
+                        &:hover {
+                            background-color: rgba(255, 255, 255, 0.2);
+                        }
+                    }
+                }
+            }
+            .label-nav-text {
+                font-size: 14px;
+            }
+            .label-close {
+                position: absolute;
+                top: 1px;
+                right: 1px;
+                display: none;
+                border-radius: 30px;
+            }
+        }
+    }
+    .heand-left {
+        .anticon {
+            cursor: pointer;
+        }
+    }
+    .heand-right {
+        height: 40px;
+        justify-content: space-around;
+        .anticon {
+            cursor: pointer;
+        }
+        .heand-user-info {
+            padding: 0 10px;
+            .user-name {
+                cursor: pointer;
+            }
+        }
+    }
+}
+.iframe-container {
+    display: flex;
+    iframe {
+        width: 100%;
+        flex: auto;
+    }
+}

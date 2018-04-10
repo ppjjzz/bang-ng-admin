@@ -1,0 +1,59 @@
+<nz-layout style="min-height: 100%;height: auto;min-width: 1000px;">
+  <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="triggerTemplate">
+    <div class="logo">
+    </div>
+    <ul nz-menu [nzTheme]="'dark'" [nzMode]="'inline'" [nzInlineCollapsed]="isCollapsed">
+      <li nz-submenu *ngFor="let item of menuList">
+        <span title>
+          <i [ngClass]="item.icon"></i>
+          <span class="nav-text">{{item.menuName}}</span>
+        </span>
+        <ul *ngIf="item.childList">
+          <li nz-menu-item *ngFor="let menu of item.childList" (click)="openMenuName(menu)">{{menu.menuName}}</li>
+        </ul>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header class="nav-header" style="background: #fff;">
+      <div class="flex-align-center heand-left">
+        <i class="anticon trigger" [class.anticon-menu-fold]="!isCollapsed" [class.anticon-menu-unfold]="isCollapsed"
+          (click)="isCollapsed=!isCollapsed"></i>
+        <span class="move-left">
+          <i class="anticon anticon-caret-left"></i>
+        </span>
+      </div>
+      <div class="label-nav-bar">
+        <div class="label-nav" *ngFor="let item of openedMenu;" [class.label-nav-active]="item.activated" (click)="toggleMenuName(item.id, item.activated)">
+          <span class="label-nav-text">{{item.menuName}}</span>
+          <span class="label-close">
+              <i class="anticon anticon-close" (click)="closeMenuName($event, item.id, item.activated)"></i>
+          </span>
+        </div>
+      </div>
+      <div class="flex-align-center heand-right">
+        <span class="move-right">
+          <i class="anticon anticon-caret-right"></i>
+        </span>
+        <div class="heand-user-info">
+            <nz-dropdown [nzPlacement]="'bottomRight'">
+                <div nz-dropdown class="user-name">
+                  {{userName}}
+                </div>
+                <ul nz-menu>
+                  <li nz-menu-item>
+                    <a>退出登录</a>
+                  </li>
+                </ul>
+              </nz-dropdown>
+        </div>
+      </div>
+    </nz-header>
+    <nz-content class="iframe-container">
+      <iframe *ngFor="let item of openedMenu" [src]="item.url" [ngShow]="item.activated" frameborder="0"></iframe>
+    </nz-content>
+  </nz-layout>
+</nz-layout>
+<ng-template #trigger>
+  <i class="anticon anticon-up"></i>
+</ng-template>
