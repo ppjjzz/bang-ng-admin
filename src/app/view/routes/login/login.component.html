@@ -5,7 +5,8 @@
             <nz-input-group nzPrefixIcon="anticon anticon-user">
               <input type="text" nz-input formControlName="userName" placeholder="用户名">
             </nz-input-group>
-            <nz-form-explain *ngIf="validateForm.get('userName').dirty && validateForm.get('userName').errors">请输入用户名!</nz-form-explain>
+            <nz-form-explain *ngIf="validateForm.get('userName').dirty && validateForm.get('userName').hasError('required')">请输入用户名!</nz-form-explain>
+            <nz-form-explain *ngIf="validateForm.get('userName').dirty && validateForm.get('userName').hasError('pattern')">不允许输入数字!</nz-form-explain>
           </nz-form-control>
         </nz-form-item>
         <nz-form-item>
